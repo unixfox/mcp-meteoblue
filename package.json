@@ -1,0 +1,47 @@
+{
+  "name": "mcp-meteoblue",
+  "version": "1.0.0",
+  "description": "MCP server for meteoblue forecast, forecast image, and location search APIs",
+  "type": "module",
+  "bin": {
+    "mcp-meteoblue": "./src/index.js"
+  },
+  "exports": "./src/index.js",
+  "files": [
+    "src",
+    "LICENSE",
+    "README.md"
+  ],
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "node --test",
+    "check": "node --check src/index.js && node --check src/meteoblue.js && npm test"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "meteoblue",
+    "weather",
+    "forecast"
+  ],
+  "author": "unixfox",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/unixfox/mcp-meteoblue.git"
+  },
+  "bugs": {
+    "url": "https://github.com/unixfox/mcp-meteoblue/issues"
+  },
+  "homepage": "https://github.com/unixfox/mcp-meteoblue#readme",
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.30.0",
+    "zod": "^4.4.3"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
