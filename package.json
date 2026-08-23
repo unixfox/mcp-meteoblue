@@ -1,6 +1,6 @@
 {
   "name": "mcp-meteoblue",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "MCP server for meteoblue forecast, forecast image, and location search APIs",
   "type": "module",
   "bin": {
