@@ -46,6 +46,39 @@ METEOBLUE_API_KEY=your_api_key_here npx -y mcp-meteoblue
 
 The server uses stdio, so it intentionally produces no normal terminal output while it waits for an MCP client.
 
+## Docker
+
+Build the image locally:
+
+```sh
+docker build -t mcp-meteoblue .
+```
+
+Configure a Docker-based stdio server in your MCP client:
+
+```json
+{
+  "mcpServers": {
+    "meteoblue": {
+      "command": "docker",
+      "args": [
+        "run",
+        "--rm",
+        "-i",
+        "--env",
+        "METEOBLUE_API_KEY",
+        "mcp-meteoblue"
+      ],
+      "env": {
+        "METEOBLUE_API_KEY": "your_api_key_here"
+      }
+    }
+  }
+}
+```
+
+The container runs as the unprivileged `node` user. Keep stdin open with `-i` because MCP communication uses stdio.
+
 ## Develop locally
 
 ```sh
@@ -58,9 +91,9 @@ Point an MCP client at `node /absolute/path/to/mcp-meteoblue/src/index.js` and s
 
 ## Releases
 
-GitHub Actions runs the test suite and validates the npm tarball on Node.js 20, 22, 24, and 26 for every push and pull request.
+GitHub Actions runs the test suite and validates the npm tarball on Node.js 20, 22, 24, and 26 for every push and pull request. Dependabot checks npm and GitHub Actions dependencies weekly.
 
-Publishing a GitHub release triggers `.github/workflows/publish.yml`. The workflow uses npm trusted publishing (OIDC) and automatically attaches provenance. Configure the npm trusted publisher with:
+Pushing a `v*` Git tag triggers `.github/workflows/publish.yml`. The workflow uses npm trusted publishing (OIDC) and automatically attaches provenance. Configure the npm trusted publisher with:
 
 - GitHub owner: `unixfox`
 - Repository: `mcp-meteoblue`
