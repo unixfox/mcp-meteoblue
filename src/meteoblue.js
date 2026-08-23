@@ -93,7 +93,7 @@ export class MeteoblueClient {
   async #fetch(url) {
     try {
       return await this.fetch(url, {
-        headers: { "user-agent": "mcp-meteoblue/1.0.0" },
+        headers: { "user-agent": "mcp-meteoblue/1.0.2" },
         signal: AbortSignal.timeout(this.timeoutMs)
       });
     } catch (error) {

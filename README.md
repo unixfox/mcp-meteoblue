@@ -10,6 +10,20 @@ An MCP server for the [meteoblue Weather API](https://docs.meteoblue.com/en/weat
 
 Place names passed to forecast or image tools are always resolved through the official meteoblue Location Search API. Forecast package inputs are restricted to the packages listed in the Free Weather API documentation.
 
+`get_forecast` can restrict hourly output to a local time range. For example, tomorrow from 14:00 through 16:00 (inclusive):
+
+```json
+{
+  "location": "Paris",
+  "forecastDays": 2,
+  "dayOffset": 1,
+  "startHour": "14:00",
+  "endHour": "16:00"
+}
+```
+
+You can use an explicit `date` such as `2026-08-24` instead of `dayOffset`. An end time earlier than the start time represents an overnight range. When a range is specified, the server requests `basic-1h` automatically and returns only the hourly data inside that range.
+
 > [!NOTE]
 > meteoblue's current Free Weather API documentation says that images require a higher access level. The image tool is included for keys with an Image API entitlement and will return a clear authorization error otherwise.
 
